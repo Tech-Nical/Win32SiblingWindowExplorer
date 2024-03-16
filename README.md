@@ -1,1 +1,2 @@
 # Win32SiblingWindowExplorer
+This project is intended to help gain an understanding of win32 sibling window behavior. The effect of window style changes, z-order changes, and changes to the drawing order can be explored via checkbox selections. This project is inteded to be ran from Visual Studio. Window draw order can be observed by the overlapping of border corners, as well as messages in the debugger output window. Hit testing the overlapped widnow corners can be performed using Visual Studio's Spy++ tool.
