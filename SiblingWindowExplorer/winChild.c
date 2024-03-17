@@ -20,7 +20,7 @@ BOOL InitChildWindows(HWND hWnd, int nWindows)
             return FALSE;
         }
 
-        _itow_s(i, numBuffer, 2, 10);
+        _itow_s((i + 1), numBuffer, 2, 10);
 
         if (FAILED(StringCchCatW(buffer, 16, numBuffer)))
         {
@@ -66,11 +66,14 @@ LRESULT CALLBACK ChildWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
             // Beginpaint and endpaint validate the rect so the pain message isn't resent
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
+            wchar_t Buffer[16] = { 0 };
+            GetWindowText(hWnd, Buffer, 16);
+            TextOut(hdc, 10, 10, (LPCWSTR)Buffer, 16);
             EndPaint(hWnd, &ps);
 
             //int i = GetWindowLong(hWnd, GWL_ID) - IDC_CONTROLIDBASE;
-            wchar_t Buffer[16] = L"";
-            GetWindowText(hWnd, Buffer, 16);
+            //wchar_t Buffer[16] = L"";
+            //GetWindowText(hWnd, Buffer, 16);
             OutputDebugString(Buffer);
             OutputDebugString(L": Painted\n");
 
